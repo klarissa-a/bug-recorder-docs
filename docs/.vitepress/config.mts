@@ -8,7 +8,24 @@ export default defineConfig({
   description: 'Документация по расширению Bug Report Recorder для записи действий и формирования баг-репортов.',
   lang: 'ru-RU',
   locales: { root: { label: 'Русский', lang: 'ru-RU' } },
-  head: [['link', { rel: 'icon', type: 'image/png', href: '/favicon.png' }]],
+  head: [
+    ['link', { rel: 'icon', type: 'image/png', href: '/favicon.png' }],
+    [
+      'script',
+      {
+        async: '',
+        src: 'https://www.googletagmanager.com/gtag/js?id=G-SZF0W87VER'
+      }
+    ],
+    [
+      'script',
+      {},
+      `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-SZF0W87VER');`
+    ]
+  ],
   themeConfig: {
     siteTitle: 'Bug Report Recorder',
     nav: [
@@ -210,4 +227,3 @@ export default defineConfig({
     footer: { message: 'Документация для ручных тестировщиков · <a href="https://t.me/testingqabug">Telegram-канал</a>' }
   }
 });
-
