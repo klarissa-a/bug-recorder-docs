@@ -4,8 +4,7 @@ import { defineConfig } from 'vitepress';
 export const extensionVersion = '0.24.7';
 
 export default defineConfig({
-  base: './', 
-  cleanUrls: false,
+  base: '/bug-recorder-docs/', 
   title: 'Bug Report Recorder Docs',
   description: 'Документация по расширению Bug Report Recorder для записи действий и формирования баг-репортов.',
   lang: 'ru-RU',
