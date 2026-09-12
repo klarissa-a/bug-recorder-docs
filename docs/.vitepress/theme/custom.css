@@ -44,3 +44,6 @@
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
 }
+
+.VPNavBarSearch .DocSearch-Button .DocSearch-Button-Keys { display: none; }
+.VPNavBarSearch .DocSearch-Button .DocSearch-Button-Placeholder { padding-right: 0; }
