@@ -1,16 +1,16 @@
 import { defineConfig } from 'vitepress';
 
 // Версия проверенной реализации; обновлять после сверки документации с новым выпуском.
-export const extensionVersion = '0.24.7';
+export const extensionVersion = '0.24.11';
 
 export default defineConfig({
-  base: '/bug-recorder-docs/', 
+  base: '/bug-recorder-docs/',
   title: 'Bug Report Recorder Docs',
   description: 'Документация по расширению Bug Report Recorder для записи действий и формирования баг-репортов.',
   lang: 'ru-RU',
   locales: { root: { label: 'Русский', lang: 'ru-RU' } },
   head: [
-    ['link', { rel: 'icon', type: 'image/png', href: '/favicon.png' }],
+    ['link', { rel: 'icon', type: 'image/png', href: '/bug-recorder-docs/favicon.png' }],
     [
       'script',
       {

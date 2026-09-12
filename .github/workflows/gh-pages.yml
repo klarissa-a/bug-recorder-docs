@@ -33,7 +33,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20' # Specify your required Node.js version
+          node-version: '22' # Specify your required Node.js version
           cache: 'npm'       # Caches npm dependencies automatically for faster runs
       - name: Install dependencies
         run: npm ci          # 'npm ci' is preferred for CI/CD over 'npm install'
