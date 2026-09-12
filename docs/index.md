@@ -16,9 +16,9 @@ hero:
 ## От воспроизведения к баг-репорту
 
 <div class="quick-path">
-<a href="/recorder/start"><strong>1. Запишите сценарий</strong><span>Откройте сайт, запустите Recorder и воспроизведите проблему.</span></a>
-<a href="/steps/view"><strong>2. Проверьте шаги</strong><span>Просмотрите действия, уточните текст и удалите лишнее.</span></a>
-<a href="/report/"><strong>3. Подготовьте отчёт</strong><span>Проверьте результаты и окружение, добавьте нужный запрос и скопируйте текст.</span></a>
+<a href="./recorder/start.html"><strong>1. Запишите сценарий</strong><span>Откройте сайт, запустите Recorder и воспроизведите проблему.</span></a>
+<a href="./steps/view.html"><strong>2. Проверьте шаги</strong><span>Просмотрите действия, уточните текст и удалите лишнее.</span></a>
+<a href="./report/"><strong>3. Подготовьте отчёт</strong><span>Проверьте результаты и окружение, добавьте нужный запрос и скопируйте текст.</span></a>
 </div>
 
 ## Возможности Recorder
