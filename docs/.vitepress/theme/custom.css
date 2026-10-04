@@ -1,20 +1,28 @@
 :root {
-  --vp-c-brand-1: #6840c6;
-  --vp-c-brand-2: #7952d5;
-  --vp-c-brand-3: #6840c6;
-  --vp-c-brand-soft: #7952d514;
+  /* Match recorder-styles-theme.js in the QA Lis extension. */
+  --qalis-accent: #6c4dff;
+  --qalis-accent-hover: #5b3de6;
+  --qalis-accent-active: #4930c7;
+  --vp-c-brand-1: var(--qalis-accent);
+  --vp-c-brand-2: var(--qalis-accent-hover);
+  --vp-c-brand-3: var(--qalis-accent);
+  --vp-c-brand-soft: #6c4dff14;
+  --vp-button-brand-bg: var(--qalis-accent);
+  --vp-button-brand-hover-bg: var(--qalis-accent-hover);
+  --vp-button-brand-active-bg: var(--qalis-accent-active);
   --vp-c-bg: #ffffff;
   --vp-c-bg-alt: #f7f6fa;
   --vp-c-text-1: #292536;
   --vp-font-family-base: 'Segoe UI', system-ui, sans-serif;
   --vp-font-family-mono: Consolas, monospace;
-  --vp-home-hero-name-color: var(--vp-c-brand-1);
+  --vp-home-hero-name-color: var(--qalis-accent);
 }
 .dark {
-  --vp-c-brand-1: #bda2ff;
-  --vp-c-brand-2: #cdbaff;
-  --vp-c-brand-3: #7952d5;
-  --vp-c-brand-soft: #bda2ff1a;
+  /* Keep small link text readable while buttons retain the exact brand color. */
+  --vp-c-brand-1: color-mix(in srgb, var(--qalis-accent) 76%, white);
+  --vp-c-brand-2: color-mix(in srgb, var(--qalis-accent) 60%, white);
+  --vp-c-brand-3: var(--qalis-accent);
+  --vp-c-brand-soft: #6c4dff1a;
   --vp-c-bg: #1b1921;
   --vp-c-bg-alt: #23202b;
   --vp-c-text-1: #efecf5;
@@ -25,16 +33,74 @@
 }
 .VPHomeHero .text { max-width: 920px; font-size: clamp(26px, 3.2vw, 40px); line-height: 1.25; }
 .VPHomeHero .tagline { max-width: 740px; font-size: 18px; line-height: 1.65; }
+/* A complete product screenshot, with text and actions first on narrow screens. */
+.VPHomeHero.VPHero.has-image .container {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  gap: 36px;
+  text-align: left;
+}
+.VPHomeHero.VPHero.has-image .main {
+  order: 0;
+  width: 100%;
+  min-width: 0;
+  max-width: 640px;
+}
+.VPHomeHero.VPHero.has-image .name,
+.VPHomeHero.VPHero.has-image .text,
+.VPHomeHero.VPHero.has-image .tagline { margin: 0; }
+.VPHomeHero.VPHero.has-image .actions { justify-content: flex-start; }
+.VPHomeHero.VPHero.has-image .image {
+  order: 1;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+}
+.VPHomeHero.VPHero.has-image .image-container {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  margin: 0 auto;
+  transform: none;
+  line-height: 0;
+}
+.VPHomeHero.VPHero.has-image .image-bg { display: none; }
+.VPHomeHero.VPHero.has-image .image-src {
+  position: static;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  max-height: none;
+  object-fit: contain;
+  transform: none;
+}
+@media (min-width: 960px) {
+  .VPHomeHero.VPHero.has-image .container {
+    grid-template-columns: minmax(0, 1fr) 360px;
+    gap: clamp(40px, 5vw, 80px);
+  }
+}
 .VPHome .vp-doc { max-width: 1152px; margin: auto; padding: 0 32px 64px; }
 .VPHome .vp-doc table { display: table; width: 100%; }
 .vp-doc h2 { letter-spacing: -.025em; }
 .vp-doc p, .vp-doc li { line-height: 1.8; }
+.VPNavBarSearch .DocSearch-Button .DocSearch-Button-Keys { display: none; }
+.VPNavBarSearch .DocSearch-Button .DocSearch-Button-Placeholder { padding-right: 0; }
+.VPLocalNav .menu .menu-text,
+.VPLocalNav .VPLocalNavOutlineDropdown button .menu-text { font-size: 16px; }
 .quick-path { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 32px 0 48px; }
 .quick-path a { display: block; border-top: 3px solid var(--vp-c-brand-1); padding: 20px 0; text-decoration: none; }
 .quick-path strong { display: block; font-size: 20px; margin-bottom: 8px; }
 .quick-path span { color: var(--vp-c-text-2); font-weight: 400; }
 .feedback { padding: 24px 28px; border-left: 3px solid var(--vp-c-brand-1); background: var(--vp-c-bg-alt); margin: 40px 0; }
 .feedback h2 { margin-top: 0; padding-top: 0; border: 0; }
+.control-legend { display: grid; gap: 20px; margin: 24px 0; }
+.control-legend-item { display: flex; align-items: flex-start; gap: 14px; line-height: 1.8; }
+.control-legend-icon { flex: 0 0 28px; width: 28px; height: 28px; margin-top: 2px; color: var(--vp-c-brand-1); }
+.control-legend-item > div { min-width: 0; }
 :focus-visible { outline: 3px solid var(--vp-c-brand-1); outline-offset: 4px; }
 @media (max-width: 640px) {
   .quick-path { grid-template-columns: 1fr; gap: 0; }

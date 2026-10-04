@@ -1,16 +1,15 @@
 import { defineConfig } from 'vitepress';
-
-// Версия проверенной реализации; обновлять после сверки документации с новым выпуском.
-export const extensionVersion = '0.24.7';
+import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 
 export default defineConfig({
   base: '/bug-recorder-docs/', 
-  title: 'Bug Report Recorder Docs',
-  description: 'Документация по расширению Bug Report Recorder для записи действий и формирования баг-репортов.',
+  title: 'QA Lis – документация',
+  description: 'Шаги, баг-репорты и тест-кейсы в QA Lis: Network, Console и связанные вкладки.',
   lang: 'ru-RU',
   locales: { root: { label: 'Русский', lang: 'ru-RU' } },
   head: [
-    ['link', { rel: 'icon', type: 'image/png', href: '/favicon.png' }],
+    ['link', { rel: 'icon', type: 'image/png', href: '/bug-recorder-docs/favicon.png' }],
     [
       'script',
       {
@@ -27,13 +26,31 @@ gtag('js', new Date());
 gtag('config', 'G-SZF0W87VER');`
     ]
   ],
+  markdown: {
+    config(md) {
+      const renderImage = md.renderer.rules.image!;
+      md.renderer.rules.image = (tokens, index, options, env, self) => {
+        const token = tokens[index];
+        const src = token.attrGet('src') || '';
+        if (!src.startsWith('/images/')) return renderImage(tokens, index, options, env, self);
+        const png = readFileSync(fileURLToPath(new URL('../public' + src, import.meta.url)));
+        // All documentation captures use a real 2x device scale, not upscaling.
+        token.attrSet('width', String(png.readUInt32BE(16) / 2));
+        token.attrSet('height', String(png.readUInt32BE(20) / 2));
+        token.attrSet('loading', 'lazy');
+        token.attrSet('decoding', 'async');
+        const image = renderImage(tokens, index, options, env, self);
+        const href = md.utils.escapeHtml('/bug-recorder-docs' + src);
+        return `<a class="doc-screenshot" href="${href}" target="_blank" rel="noopener" title="Открыть скриншот в полном размере">${image}</a>`;
+      };
+    }
+  },
   themeConfig: {
-    siteTitle: 'Bug Report Recorder',
+    siteTitle: 'QA Lis',
     nav: [
       { text: 'Документация', link: '/getting-started/what-is' },
       { text: 'Помощь', link: '/help/troubleshooting' },
-      { text: 'Telegram', link: 'https://t.me/testingqabug' },
-      { text: 'Версия ' + extensionVersion, link: '/getting-started/what-is#версия-документации' }
+      { text: 'Telegram', link: 'https://t.me/testingqabug' }
     ],
     sidebar: [
   {
@@ -41,7 +58,7 @@ gtag('config', 'G-SZF0W87VER');`
     "collapsed": false,
     "items": [
       {
-        "text": "Что такое Bug Report Recorder",
+        "text": "Что такое QA Lis",
         "link": "/getting-started/what-is"
       },
       {
@@ -79,8 +96,12 @@ gtag('config', 'G-SZF0W87VER');`
         "link": "/recorder/tabs"
       },
       {
-        "text": "Сохранённый черновик",
+        "text": "Сохранённые отчёты",
         "link": "/recorder/draft"
+      },
+      {
+        "text": "Наборы багов и тест-кейсов",
+        "link": "/recorder/records"
       }
     ]
   },
@@ -97,7 +118,7 @@ gtag('config', 'G-SZF0W87VER');`
         "link": "/steps/view"
       },
       {
-        "text": "Редактирование",
+        "text": "Редактирование и порядок",
         "link": "/steps/edit"
       },
       {
@@ -111,12 +132,16 @@ gtag('config', 'G-SZF0W87VER');`
     ]
   },
   {
-    "text": "Баг-репорт",
+    "text": "Отчёты",
     "collapsed": false,
     "items": [
       {
         "text": "Структура отчёта",
         "link": "/report/"
+      },
+      {
+        "text": "Тест-кейс",
+        "link": "/report/test-case"
       },
       {
         "text": "Заголовок",
@@ -137,7 +162,7 @@ gtag('config', 'G-SZF0W87VER');`
     ]
   },
   {
-    "text": "Network",
+    "text": "Network и Console",
     "collapsed": false,
     "items": [
       {
@@ -147,6 +172,10 @@ gtag('config', 'G-SZF0W87VER');`
       {
         "text": "Работа с запросами",
         "link": "/network/requests"
+      },
+      {
+        "text": "Ошибки и предупреждения Console",
+        "link": "/network/console"
       }
     ]
   },

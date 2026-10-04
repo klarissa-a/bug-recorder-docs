@@ -1,157 +1,58 @@
-# Bug Report Recorder Docs
+# QA Lis – документация
 
-Самостоятельный сайт на VitePress. Исходники расширения и его зависимости не требуются. Документация на русском, со светлой и тёмной темами и локальным поиском.
+Русскоязычный сайт на VitePress 1.6.4. Документация сверена 3 октября 2026 года с локальной реализацией QA Lis 0.25.2 (изменения по 2 октября). Версия магазина может отличаться.
 
-Используется стабильный VitePress 1.6.4; Vite закреплён через overrides на исправленной версии 6.4.3. Совместимость проверена production-сборкой. При обновлении зависимостей повторите сборку и проверку поиска.
+## Запуск
 
-## Локальный запуск
-
-Требуется Node.js 22 или новее. Откройте терминал в этой папке:
+Требуется Node.js 22 или новее:
 
 ```sh
 npm install
 npm run docs:dev
 ```
 
-Откройте адрес, показанный в терминале (обычно http://localhost:5173).
-В PowerShell, если запуск npm.ps1 запрещён, используйте `npm.cmd` вместо `npm`.
+В PowerShell при запрете npm.ps1 используйте `npm.cmd`. Открывайте полный адрес из вывода: сайт использует base `/bug-recorder-docs/`.
 
-## Production build
+## Сборка и предпросмотр
 
 ```sh
 npm run docs:build
-```
-
-Результат: `docs/.vitepress/dist`. Сборка проверяет внутренние Markdown-ссылки.
-
-## Preview
-
-```sh
 npm run docs:preview
 ```
 
-Откройте выведенный локальный адрес (обычно http://localhost:4173).
+Результат – `docs/.vitepress/dist`. Сборка проверяет Markdown-ссылки и наличие PNG, подключённых к статьям.
 
-## Публикация через Vercel
+## Содержание
 
-1. Создайте GitHub-репозиторий `bug-report-recorder-docs`.
-2. Загрузите **содержимое этой папки** в корень репозитория, включая скрытые файлы, package-lock.json и docs/.vitepress. Не загружайте node_modules, cache и dist.
-3. В Vercel выберите Import Git Repository.
-4. Выберите репозиторий.
-5. Root Directory: корень репозитория. Framework Preset: Other.
-6. Build Command: `npm run docs:build`.
-7. Output Directory: `docs/.vitepress/dist`.
-8. Install Command: `npm install`.
-9. Нажмите Deploy.
+- Начало работы, установка, первая запись.
+- Панель, пауза, остановка, связанные вкладки, сохранённые отчёты.
+- Отдельные наборы до трёх багов и до трёх тест-кейсов.
+- Просмотр, правка, добавление, удаление и порядок шагов.
+- Баг-репорт и тест-кейс, ограничения полей, копирование.
+- Network: поиск, фильтры, запрос/ответ и выбор данных для копии.
+- Console: Error, Warning, детали и stack trace.
+- RU / EN, тема и решение проблем.
 
-Эти параметры сборки также указаны в vercel.json. Если импортируется весь репозиторий расширения, установите Root Directory в `bug-report-recorder-docs`; остальные значения сохраняются. Предпочтителен отдельный репозиторий.
+Тексты находятся в `docs/`, навигация – в `docs/.vitepress/config.mts`. Источники и дата сверки записаны в `CONTENT_REVIEW.md`.
 
-## Структура
+## Скриншоты
 
-```text
-package.json
-package-lock.json
-vercel.json
-README.md
-CONTENT_REVIEW.md
-docs/
-  index.md
-  .vitepress/
-    config.mts
-    theme/index.js
-    theme/custom.css
-  getting-started/
-  recorder/
-  steps/
-  report/
-  network/
-  settings/
-  help/
-  public/
-    favicon.png
-    images/
-      getting-started/
-      recorder/
-      steps/
-      report/
-      network/
-      settings/
-      help/
+Все 25 PNG в `docs/public/images/` сняты с настоящей сборки расширения в изолированном Chromium на учебной странице и тестовых данных, с deviceScaleFactor 2. Они не увеличены искусственно и не сгенерированы.
+
+Изображения показывают полный целевой интерфейс с отступом по краям. Длинный отчёт снят при увеличенной высоте окна, без изменения CSS расширения. Детали запросов и Console сняты отдельно.
+
+Markdown:
+
+```md
+![Понятное описание](/images/recorder/ready-light.png)
 ```
 
-## Страницы
+Обработчик изображений в конфигурации читает размер PNG и задаёт отображение в половину исходного размера (2x), ограниченное шириной статьи. Пропорции сохраняются; масок и обрезки по высоте нет. Нажатие открывает исходный PNG в новой вкладке.
 
-### Начало работы
+При замене используйте PNG с настоящим масштабом 2x. Если меняются base или формат изображений, обновите обработчик и повторите сборку.
 
-- [Что такое Bug Report Recorder](docs/getting-started/what-is.md)
-- [Установка](docs/getting-started/installation.md)
-- [Первая запись](docs/getting-started/first-recording.md)
+## Публикация
 
-### Recorder
+GitHub Actions использует Node.js 24, как при локальной проверке; это соответствует требованию `node >=22` в package.json. Команда сборки – `npm run docs:build`, каталог результата – `docs/.vitepress/dist`. Остальные настройки публикации сохранены. Для Vercel учтите, что base сейчас рассчитан на размещение в подкаталоге `/bug-recorder-docs/`; проверяйте окончательный адрес перед публикацией.
 
-- [Начало записи](docs/recorder/start.md)
-- [Панель](docs/recorder/panel.md)
-- [Пауза и продолжение](docs/recorder/pause.md)
-- [Завершение записи](docs/recorder/stop.md)
-- [Работа между вкладками](docs/recorder/tabs.md)
-- [Сохранённый черновик](docs/recorder/draft.md)
-
-### Шаги
-
-- [Как формируются шаги](docs/steps/how-it-works.md)
-- [Просмотр шагов](docs/steps/view.md)
-- [Редактирование](docs/steps/edit.md)
-- [Удаление](docs/steps/delete.md)
-- [Поля ввода](docs/steps/inputs.md)
-
-### Баг-репорт
-
-- [Структура отчёта](docs/report/index.md)
-- [Заголовок](docs/report/title.md)
-- [Ожидаемый и фактический результат](docs/report/expected-actual.md)
-- [Окружение](docs/report/environment.md)
-- [Копирование отчёта](docs/report/copy.md)
-
-### Network
-
-- [Что записывается](docs/network/index.md)
-- [Работа с запросами](docs/network/requests.md)
-
-### Настройки
-
-- [RU / EN](docs/settings/language.md)
-
-### Помощь
-
-- [Решение проблем](docs/help/troubleshooting.md)
-- [Recorder не запускается](docs/help/not-starting.md)
-- [Не записался шаг](docs/help/missing-step.md)
-- [Не отображается Network](docs/help/missing-network.md)
-- [Панель ведёт себя неправильно](docs/help/panel.md)
-- [Сообщить о проблеме](docs/help/report-a-bug.md)
-- [Предложить улучшение](docs/help/suggest-feature.md)
-
-Главная: [docs/index.md](docs/index.md).
-
-## Редактирование и новые языки
-
-Тексты находятся в Markdown-файлах. Добавляйте новые страницы в соответствующую папку и ссылки на них в sidebar в `docs/.vitepress/config.mts`.
-
-Русская версия настроена через locale `root`. Для английской версии позже добавьте locale `en`, страницы в `docs/en/` и отдельные nav/sidebar/search translations. Сейчас пустых английских страниц и переключателя языка документации нет.
-
-Версия проверенной реализации хранится один раз: `extensionVersion` в `docs/.vitepress/config.mts`. Не считайте её автоматически текущей версией Chrome Web Store.
-
-Изображения лежат в **docs/public/images/**: VitePress копирует public из корня контента docs. Ссылка в Markdown: `![Описание](/images/recorder/panel.png)`. Используйте только реальные скриншоты с тестовыми данными. Favicon взят из существующей иконки расширения.
-
-## Что проверить перед публикацией
-
-- Откройте главную страницу и статью по прямой ссылке, обновите страницу.
-- Проверьте навигацию, светлую и тёмную тему, меню на узком экране.
-- В поиске попробуйте: Network, шаги, запись, ОР, ФР, заголовок, вкладки, пароль, панель, установка, Telegram.
-- Проверьте переходы в Chrome Web Store и Telegram.
-- Добавьте реальные скриншоты в местах `TODO: добавить скриншот`.
-- Сверьте статьи с версией расширения, которую публикуете.
-
-Детали проверки содержимого и оставшиеся уточнения: [CONTENT_REVIEW.md](CONTENT_REVIEW.md). Результаты технической проверки: [VALIDATION.md](VALIDATION.md). Снимки готового сайта: [главная](previews/home-desktop.png), [мобильная версия](previews/home-mobile.png).
-
-Настройка основана на [руководстве VitePress](https://vitepress.dev/guide/getting-started), [локальном поиске](https://vitepress.dev/reference/default-theme-search) и [публикации](https://vitepress.dev/guide/deploy).
+В рамках обновления 3 октября сайт не публиковался. Результаты: [CONTENT_REVIEW.md](CONTENT_REVIEW.md), [VALIDATION.md](VALIDATION.md).
