@@ -111,7 +111,14 @@
   *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
 }
 
-/* Instructional arrows overlay the original, unmodified screenshot. */
-.screenshot-guide { position: relative; margin: 24px 0; }
-.screenshot-guide > img { display: block; width: 100%; height: auto; margin: 0; }
-.screenshot-guide-arrows { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; font-family: Arial, sans-serif; }
+/* Keep the source screenshot intact; show controls at a readable scale. */
+.screenshot-overview { margin: 24px 0; }
+.screenshot-guide { position: relative; }
+.screenshot-guide > img { display: block; width: 100%; height: auto; margin: 0; border-radius: 10px; }
+.screenshot-guide-arrows { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.screenshot-overview > figcaption { margin-top: 10px; color: var(--vp-c-text-2); font-size: 14px; line-height: 1.6; }
+.screenshot-detail { margin: 24px 0; padding: 18px 0 14px; border: 1px solid var(--vp-c-divider); border-radius: 12px; overflow: hidden; }
+.screenshot-detail > figcaption { display: flex; flex-wrap: wrap; gap: 4px 16px; justify-content: space-between; padding: 0 18px 14px; font-size: 14px; line-height: 1.6; }
+.screenshot-detail > figcaption span { color: var(--vp-c-text-2); }
+.screenshot-detail-scroll { overflow-x: auto; }
+.screenshot-detail-scroll > svg { display: block; width: 100%; min-width: 640px; height: auto; }

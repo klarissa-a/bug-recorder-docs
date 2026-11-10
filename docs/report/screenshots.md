@@ -13,24 +13,27 @@
 
 Чтобы снять раскрытое меню или подсказку под курсором, используйте **Alt + Shift + S**: команда снимает видимую область. Назначение можно проверить или изменить в `chrome://extensions/shortcuts`. В настройках скриншотера доступны скрытие QA Lis на снимке и дата и время.
 
-<div class="screenshot-guide">
-  <img src="/images/report/onliner-editor.png" alt="Скриншотер QA Lis на сайте Onlíner. Стрелка 1 указывает на панель инструментов, стрелка 2 — на создание следующего снимка и открытие отчёта." width="1440" height="1000" />
-  <svg viewBox="0 0 1440 1000" aria-hidden="true" class="screenshot-guide-arrows">
-    <defs><marker id="shot-arrow" markerWidth="28" markerHeight="28" refX="24" refY="14" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L26 14L0 28Z" fill="#e32935" /></marker></defs>
-    <rect x="450" y="650" width="540" height="66" rx="16" fill="white" stroke="#e32935" stroke-width="4" />
-    <text x="720" y="694" text-anchor="middle" fill="#a80d21" font-size="34" font-weight="700">1. Скриншотер QA Lis</text>
-    <path d="M720 722L720 786" fill="none" stroke="white" stroke-width="14" />
-    <path d="M720 722L720 786" fill="none" stroke="#e32935" stroke-width="8" marker-end="url(#shot-arrow)" />
-    <rect x="20" y="850" width="420" height="62" rx="16" fill="white" stroke="#e32935" stroke-width="4" />
-    <text x="230" y="891" text-anchor="middle" fill="#a80d21" font-size="30" font-weight="700">2. Снимки и отчёт</text>
-    <path d="M440 883Q470 895 486 944" fill="none" stroke="white" stroke-width="14" />
-    <path d="M440 883Q470 895 486 944" fill="none" stroke="#e32935" stroke-width="8" marker-end="url(#shot-arrow)" />
-  </svg>
-</div>
+<figure class="screenshot-overview">
+  <div class="screenshot-guide">
+    <img src="/images/report/onliner-editor.png" alt="Скриншотер QA Lis открыт поверх каталога Onlíner. Фиолетовая стрелка указывает на панель инструментов внизу снимка." width="1440" height="1000" />
+    <svg viewBox="0 0 1440 1000" aria-hidden="true" class="screenshot-guide-arrows">
+      <path d="M1210 700 Q1140 692 1070 785 M1070 785 L1076 754 M1070 785 L1101 779" fill="none" stroke="white" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M1210 700 Q1140 692 1070 785 M1070 785 L1076 754 M1070 785 L1101 779" fill="none" stroke="#7657ff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  </div>
+  <figcaption>Панель скриншотера можно перетащить за шесть точек, чтобы она не закрывала нужный участок сайта.</figcaption>
+</figure>
 
-**1 — Скриншотер QA Lis:** выбор области, стрелка, рамка, скрытие данных, копирование и скачивание PNG.
+<figure class="screenshot-detail">
+  <figcaption><strong>Панель инструментов QA Lis</strong><span>Крупный план</span></figcaption>
+  <div class="screenshot-detail-scroll" tabindex="0" role="region" aria-label="Панель инструментов крупным планом; на узком экране прокручивается горизонтально">
+    <svg viewBox="320 783 800 77" role="img" aria-label="Панель скриншотера: выбор области, стрелка, рамка, скрытие данных, копирование, скачивание и настройки">
+      <image href="/images/report/onliner-editor.png" x="0" y="0" width="1440" height="1000" />
+    </svg>
+  </div>
+</figure>
 
-**2 — Нижняя панель:** новый скриншот и переход к отчёту.
+Выберите область снимка, затем используйте стрелку, рамку или скрытие данных. Справа на панели — копирование, скачивание PNG и настройки. Нижняя отдельная полоска содержит **Новый скриншот** и **Открыть отчёт**.
 
 На примере — настоящий каталог Onlíner. Рамка показывает, как выделить участок страницы для пояснения в отчёте.
 
@@ -61,4 +64,3 @@
 - Если страница слишком большая, уменьшите масштаб браузера или выберите область.
 - Если содержимое или прокрутка страницы продолжают сдвигаться, повторите позже либо снимите видимую область.
 - Если снимок изменён в другой вкладке, закройте редактор и откройте его снова.
-
