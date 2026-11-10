@@ -140,6 +140,14 @@ gtag('config', 'G-SZF0W87VER');`
         "link": "/report/"
       },
       {
+        "text": "Скриншоты бага",
+        "link": "/report/screenshots"
+      },
+      {
+        "text": "Ожидаемые результаты у шагов",
+        "link": "/report/step-results"
+      },
+      {
         "text": "Тест-кейс",
         "link": "/report/test-case"
       },
